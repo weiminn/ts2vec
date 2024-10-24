@@ -6,6 +6,7 @@ from models import TSEncoder
 from models.losses import hierarchical_contrastive_loss
 from utils import take_per_row, split_with_nan, centerize_vary_length_series, torch_pad_nan
 import math
+from tqdm import tqdm
 
 class TS2Vec:
     '''The TS2Vec model'''
@@ -239,7 +240,9 @@ class TS2Vec:
                     if n_samples < batch_size:
                         calc_buffer = []
                         calc_buffer_l = 0
-                    for i in range(0, ts_l, sliding_length):
+                        
+                    toLoop = [i for i in range(0, ts_l, sliding_length)]
+                    for i in tqdm(toLoop):
                         l = i - sliding_padding
                         r = i + sliding_length + (sliding_padding if not causal else 0)
                         x_sliding = torch_pad_nan(

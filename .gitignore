@@ -2,5 +2,9 @@
 .ipynb_checkpoints
 __pycache__
 training/*
+data/*
+dataset/*
+datasets/*
 scripts/_nohup
 .rsync-filter
+venv/*

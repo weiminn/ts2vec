@@ -117,13 +117,16 @@ if __name__ == '__main__':
         device=device,
         **config
     )
-    loss_log = model.fit(
-        train_data,
-        n_epochs=args.epochs,
-        n_iters=args.iters,
-        verbose=True
-    )
-    model.save(f'{run_dir}/model.pkl')
+
+    # loss_log = model.fit(
+    #     train_data,
+    #     n_epochs=args.epochs,
+    #     n_iters=args.iters,
+    #     verbose=True
+    # )
+    # model.save(f'{run_dir}/model.pkl')
+    
+    model.load('training/electricity__forecast_multivar_20241024_101915/model.pkl')
 
     t = time.time() - t
     print(f"\nTraining time: {datetime.timedelta(seconds=t)}\n")

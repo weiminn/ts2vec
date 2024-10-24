@@ -3,8 +3,8 @@ import argparse
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-i', '--input', type=str, default='LD2011_2014.txt')
-    parser.add_argument('-o', '--output', type=str, default='electricity.csv')
+    parser.add_argument('-i', '--input', type=str, default='./datasets/ECL/LD2011_2014.txt')
+    parser.add_argument('-o', '--output', type=str, default='./datasets/ECL/electricity.csv')
     args = parser.parse_args()
     data_ecl = pd.read_csv(args.input, parse_dates=True, sep=';', decimal=',', index_col=0)
     data_ecl = data_ecl.resample('1h', closed='right').sum()
